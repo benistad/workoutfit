@@ -6,6 +6,7 @@ export const workouts = [
     description: 'Programme DAREBEE de 30 jours pour le dos et les abdominaux',
     duration: 30,
     daysPerWeek: 7,
+    estimatedMinutes: 15,
     equipment: 'none',
     type: 'addon',
     difficulty: 2,
