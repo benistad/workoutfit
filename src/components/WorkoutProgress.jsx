@@ -88,8 +88,81 @@ export function WorkoutProgress({ workout, completedDays, onSelectDay, onReset, 
           </div>
         </div>
 
+        {/* Program Details */}
+        <div className="grid grid-cols-3 gap-2 mb-3 animate-slide-up stagger-1">
+          {/* Duration */}
+          <div className="apple-card py-3 px-2 flex flex-col items-center">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="4" width="18" height="18" rx="2" stroke="var(--apple-blue)" strokeWidth="2" fill="none"/>
+              <path d="M3 10H21" stroke="var(--apple-blue)" strokeWidth="2"/>
+              <path d="M8 2V6" stroke="var(--apple-blue)" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M16 2V6" stroke="var(--apple-blue)" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+            <div 
+              className="text-[17px] font-bold tabular-nums mt-1"
+              style={{ color: 'var(--apple-blue)' }}
+            >
+              {workout.duration}
+            </div>
+            <div className="apple-caption-2 mt-0.5" style={{ color: 'var(--apple-text-tertiary)' }}>
+              JOURS
+            </div>
+          </div>
+          
+          {/* Equipment */}
+          <div className="apple-card py-3 px-2 flex flex-col items-center">
+            {workout.equipment === 'none' ? (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="9" stroke="var(--apple-green)" strokeWidth="2" fill="none"/>
+                <path d="M8 12L11 15L16 9" stroke="var(--apple-green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            ) : (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="10" width="4" height="4" rx="1" fill="var(--apple-orange)"/>
+                <rect x="18" y="10" width="4" height="4" rx="1" fill="var(--apple-orange)"/>
+                <rect x="6" y="8" width="12" height="8" rx="1" stroke="var(--apple-orange)" strokeWidth="2" fill="none"/>
+              </svg>
+            )}
+            <div 
+              className="text-[15px] font-semibold mt-1 text-center"
+              style={{ color: workout.equipment === 'none' ? 'var(--apple-green)' : 'var(--apple-orange)' }}
+            >
+              {workout.equipment === 'none' ? 'Aucun' : 'Requis'}
+            </div>
+            <div className="apple-caption-2 mt-0.5" style={{ color: 'var(--apple-text-tertiary)' }}>
+              ÉQUIPEMENT
+            </div>
+          </div>
+          
+          {/* Difficulty */}
+          <div className="apple-card py-3 px-2 flex flex-col items-center">
+            <div className="flex gap-1">
+              {[1, 2, 3, 4, 5].map((level) => (
+                <div 
+                  key={level}
+                  className="w-2.5 h-5 rounded-sm"
+                  style={{ 
+                    backgroundColor: level <= (workout.difficulty || 2)
+                      ? 'var(--apple-red)' 
+                      : 'var(--apple-fill-tertiary)'
+                  }}
+                />
+              ))}
+            </div>
+            <div 
+              className="text-[15px] font-semibold mt-1"
+              style={{ color: 'var(--apple-red)' }}
+            >
+              {workout.difficultyLabel || 'Débutant'}
+            </div>
+            <div className="apple-caption-2 mt-0.5" style={{ color: 'var(--apple-text-tertiary)' }}>
+              DIFFICULTÉ
+            </div>
+          </div>
+        </div>
+
         {/* Health Stats */}
-        <div className="mb-3 animate-slide-up stagger-1">
+        <div className="mb-3 animate-slide-up stagger-2">
           <HealthStats 
             completedDays={completedCount} 
             totalDays={totalDays}
