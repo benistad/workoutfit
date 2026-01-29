@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { ActivityRings } from './ActivityRings';
 import { HealthStats, WeeklyProgress, StreakBadge } from './HealthStats';
 
 export function WorkoutProgress({ workout, completedDays, onSelectDay, onToggleDay, onReset, onBackToSelector }) {
+  const [showAllDays, setShowAllDays] = useState(false);
   const totalDays = workout.days.length;
   const completedCount = completedDays.length;
   const progressPercent = (completedCount / totalDays) * 100;
@@ -305,7 +307,7 @@ export function WorkoutProgress({ workout, completedDays, onSelectDay, onToggleD
           </h2>
           
           <div className="apple-card overflow-hidden">
-            {workout.days.slice(0, 10).map((day, index) => {
+            {(showAllDays ? workout.days : workout.days.slice(0, 10)).map((day, index, arr) => {
               const isCompleted = completedDays.includes(day.day);
               const isCurrent = day.day === nextDay;
               
@@ -357,7 +359,7 @@ export function WorkoutProgress({ workout, completedDays, onSelectDay, onToggleD
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
-                  {index < 9 && <div className="apple-separator" />}
+                  {index < arr.length - 1 && <div className="apple-separator" />}
                 </div>
               );
             })}
@@ -365,13 +367,16 @@ export function WorkoutProgress({ workout, completedDays, onSelectDay, onToggleD
             {workout.days.length > 10 && (
               <button 
                 className="w-full py-3 text-center apple-pressable"
-                onClick={() => {}}
+                onClick={() => setShowAllDays(!showAllDays)}
               >
                 <span 
                   className="apple-subheadline"
                   style={{ color: 'var(--apple-blue)' }}
                 >
-                  Voir les {workout.days.length - 10} autres jours
+                  {showAllDays 
+                    ? 'Voir moins' 
+                    : `Voir les ${workout.days.length - 10} autres jours`
+                  }
                 </span>
               </button>
             )}
