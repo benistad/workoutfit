@@ -1,0 +1,415 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Apple-style dark theme - iOS 17 colors */
+  --apple-bg: #000000;
+  --apple-bg-secondary: #1c1c1e;
+  --apple-bg-tertiary: #2c2c2e;
+  --apple-bg-elevated: #3a3a3c;
+  --apple-bg-grouped: #000000;
+  --apple-bg-grouped-secondary: #1c1c1e;
+  
+  /* Apple Fitness ring colors - exact iOS values */
+  --apple-red: #ff2d55;
+  --apple-green: #30d158;
+  --apple-blue: #0a84ff;
+  
+  /* Additional system colors */
+  --apple-orange: #ff9f0a;
+  --apple-yellow: #ffd60a;
+  --apple-pink: #ff375f;
+  --apple-purple: #bf5af2;
+  --apple-teal: #30b0c7;
+  --apple-indigo: #5e5ce6;
+  
+  /* Text colors - iOS semantic colors */
+  --apple-text-primary: #ffffff;
+  --apple-text-secondary: rgba(235, 235, 245, 0.6);
+  --apple-text-tertiary: rgba(235, 235, 245, 0.3);
+  --apple-text-quaternary: rgba(235, 235, 245, 0.18);
+  
+  /* Separators */
+  --apple-separator: rgba(84, 84, 88, 0.65);
+  --apple-separator-opaque: #38383a;
+  
+  /* Fill colors */
+  --apple-fill-primary: rgba(120, 120, 128, 0.36);
+  --apple-fill-secondary: rgba(120, 120, 128, 0.32);
+  --apple-fill-tertiary: rgba(118, 118, 128, 0.24);
+  
+  /* Spacing - Apple HIG base unit 8px */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 20px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 40px;
+  
+  /* Border radius - iOS style */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--apple-bg);
+  color: var(--apple-text-primary);
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-feature-settings: 'kern' 1;
+  text-rendering: optimizeLegibility;
+}
+
+/* Apple-style typography - SF Pro exact specs */
+.apple-large-title {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.37px;
+  line-height: 41px;
+}
+
+.apple-title-1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.36px;
+  line-height: 34px;
+}
+
+.apple-title-2 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.35px;
+  line-height: 28px;
+}
+
+.apple-title-3 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.38px;
+  line-height: 25px;
+}
+
+.apple-headline {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.41px;
+  line-height: 22px;
+}
+
+.apple-body {
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.41px;
+  line-height: 22px;
+}
+
+.apple-callout {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.32px;
+  line-height: 21px;
+}
+
+.apple-subheadline {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -0.24px;
+  line-height: 20px;
+}
+
+.apple-footnote {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.08px;
+  line-height: 18px;
+}
+
+.apple-caption-1 {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 16px;
+}
+
+.apple-caption-2 {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.07px;
+  line-height: 13px;
+}
+
+/* Legacy alias */
+.apple-title {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.37px;
+  line-height: 41px;
+}
+
+.apple-caption {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: var(--apple-text-secondary);
+}
+
+/* Apple glass/vibrancy effect - iOS style */
+.apple-glass {
+  background: rgba(28, 28, 30, 0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+.apple-glass-thick {
+  background: rgba(28, 28, 30, 0.85);
+  backdrop-filter: saturate(180%) blur(30px);
+  -webkit-backdrop-filter: saturate(180%) blur(30px);
+}
+
+/* Apple card style - grouped table view */
+.apple-card {
+  background: var(--apple-bg-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.apple-card-inset {
+  background: var(--apple-bg-secondary);
+  border-radius: var(--radius-md);
+  margin-left: var(--space-md);
+  margin-right: var(--space-md);
+}
+
+/* Apple ring progress */
+.ring-progress {
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+.ring-track {
+  fill: none;
+  stroke: var(--apple-bg-tertiary);
+}
+
+.ring-fill {
+  fill: none;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s ease-out;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ringFill {
+  from { stroke-dashoffset: var(--ring-circumference); }
+  to { stroke-dashoffset: var(--ring-offset); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Stagger delays */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+
+/* Touch targets - Apple HIG 44pt minimum */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Safe areas */
+.safe-top {
+  padding-top: max(20px, env(safe-area-inset-top));
+}
+
+.safe-bottom {
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Apple-style list separator */
+.apple-separator {
+  height: 0.5px;
+  background: var(--apple-separator);
+  margin-left: var(--space-md);
+}
+
+/* Apple-style row */
+.apple-row {
+  display: flex;
+  align-items: center;
+  padding: 11px var(--space-md);
+  min-height: 44px;
+  gap: var(--space-md);
+}
+
+.apple-row-compact {
+  padding: 8px var(--space-md);
+  min-height: 36px;
+}
+
+/* Haptic feedback simulation - iOS spring animation */
+.haptic {
+  transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.haptic:active {
+  transform: scale(0.97);
+}
+
+/* Apple button styles */
+.apple-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px var(--space-lg);
+  border-radius: var(--radius-md);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.41px;
+  min-height: 50px;
+  transition: all 0.15s ease;
+}
+
+.apple-button-primary {
+  background: var(--apple-blue);
+  color: white;
+}
+
+.apple-button-primary:active {
+  background: #0070e0;
+  transform: scale(0.98);
+}
+
+.apple-button-secondary {
+  background: var(--apple-fill-tertiary);
+  color: var(--apple-blue);
+}
+
+.apple-button-green {
+  background: var(--apple-green);
+  color: black;
+}
+
+.apple-button-green:active {
+  background: #28b84c;
+  transform: scale(0.98);
+}
+
+/* Apple pill/chip style */
+.apple-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--apple-fill-tertiary);
+}
+
+/* Smooth number transitions */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Content padding helpers */
+.content-padding {
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+.section-spacing {
+  margin-bottom: var(--space-lg);
+}
+
+/* iOS-style pressed state for list items */
+.apple-pressable {
+  transition: background-color 0.1s ease;
+}
+
+.apple-pressable:active {
+  background-color: var(--apple-fill-tertiary);
+}
