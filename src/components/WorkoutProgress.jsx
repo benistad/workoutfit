@@ -379,13 +379,26 @@ export function WorkoutProgress({ workout, completedDays, onSelectDay, onToggleD
         </section>
 
         {/* Reset button */}
-        <button
-          onClick={onReset}
-          className="w-full mt-8 py-3 apple-body transition-opacity active:opacity-50 touch-target"
-          style={{ color: 'var(--apple-red)' }}
-        >
-          Réinitialiser la progression
-        </button>
+        <div className="mt-8 animate-slide-up stagger-6">
+          <button
+            onClick={onReset}
+            className="w-full apple-card py-4 flex items-center justify-center gap-3 haptic touch-target apple-pressable"
+            style={{ borderColor: 'var(--apple-red)', borderWidth: '1px' }}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 12C4 7.58172 7.58172 4 12 4C14.5 4 16.75 5.1 18.25 6.85" stroke="var(--apple-red)" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M20 12C20 16.4183 16.4183 20 12 20C9.5 20 7.25 18.9 5.75 17.15" stroke="var(--apple-red)" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M15 4L18.5 7L22 4" stroke="var(--apple-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M9 20L5.5 17L2 20" stroke="var(--apple-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span 
+              className="apple-headline"
+              style={{ color: 'var(--apple-red)' }}
+            >
+              Réinitialiser le programme
+            </span>
+          </button>
+        </div>
       </main>
     </div>
   );
