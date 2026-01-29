@@ -42,6 +42,25 @@ function App() {
     setCurrentDay(null);
   };
 
+  const handleToggleDay = (day) => {
+    if (activeWorkout) {
+      const currentProgress = allProgress[activeWorkout.id] || [];
+      if (currentProgress.includes(day)) {
+        // Remove day (uncheck)
+        setAllProgress({
+          ...allProgress,
+          [activeWorkout.id]: currentProgress.filter(d => d !== day)
+        });
+      } else {
+        // Add day (check)
+        setAllProgress({
+          ...allProgress,
+          [activeWorkout.id]: [...currentProgress, day]
+        });
+      }
+    }
+  };
+
   const handleReset = () => {
     if (window.confirm('Voulez-vous vraiment réinitialiser la progression de ce programme ?')) {
       if (activeWorkout) {
@@ -95,6 +114,7 @@ function App() {
       workout={activeWorkout}
       completedDays={completedDays}
       onSelectDay={handleSelectDay}
+      onToggleDay={handleToggleDay}
       onReset={handleReset}
       onBackToSelector={handleBackToSelector}
     />

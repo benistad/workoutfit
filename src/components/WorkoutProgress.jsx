@@ -1,7 +1,7 @@
 import { ActivityRings } from './ActivityRings';
 import { HealthStats, WeeklyProgress, StreakBadge } from './HealthStats';
 
-export function WorkoutProgress({ workout, completedDays, onSelectDay, onReset, onBackToSelector }) {
+export function WorkoutProgress({ workout, completedDays, onSelectDay, onToggleDay, onReset, onBackToSelector }) {
   const totalDays = workout.days.length;
   const completedCount = completedDays.length;
   const progressPercent = (completedCount / totalDays) * 100;
@@ -258,8 +258,17 @@ export function WorkoutProgress({ workout, completedDays, onSelectDay, onReset, 
                 return (
                   <button
                     key={day.day}
-                    onClick={() => !isLocked && onSelectDay(day.day)}
-                    disabled={isLocked}
+                    onClick={() => {
+                      if (isCompleted) {
+                        // Toggle off completed day
+                        if (window.confirm(`Annuler le jour ${day.day} ?`)) {
+                          onToggleDay(day.day);
+                        }
+                      } else if (!isLocked) {
+                        onSelectDay(day.day);
+                      }
+                    }}
+                    disabled={isLocked && !isCompleted}
                     className="aspect-square rounded-full flex items-center justify-center text-[13px] font-medium touch-target haptic"
                     style={{ 
                       backgroundColor: isCompleted 
@@ -274,7 +283,7 @@ export function WorkoutProgress({ workout, completedDays, onSelectDay, onReset, 
                         : isLocked 
                         ? 'var(--apple-text-quaternary)' 
                         : 'var(--apple-text-secondary)',
-                      cursor: isLocked ? 'not-allowed' : 'pointer',
+                      cursor: isLocked && !isCompleted ? 'not-allowed' : 'pointer',
                       border: isCurrent && !isCompleted ? '2px solid var(--apple-green)' : 'none'
                     }}
                   >
