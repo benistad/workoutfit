@@ -101,12 +101,12 @@ export function WorkoutDay({ workout, currentDay, progress, onCompleteDay, onBac
         <div className="grid grid-cols-3 gap-2 mb-3 animate-slide-up stagger-1">
           <div className="apple-card py-3 px-2 flex flex-col items-center">
             <TimerIcon size={28} color="var(--apple-blue)" />
-            <div className="text-[17px] font-bold tabular-nums mt-1" style={{ color: 'var(--apple-blue)' }}>~20</div>
+            <div className="text-[17px] font-bold tabular-nums mt-1" style={{ color: 'var(--apple-blue)' }}>~{workout.estimatedMinutes || 15}</div>
             <div className="apple-caption-2 mt-0.5" style={{ color: 'var(--apple-text-tertiary)' }}>MINUTES</div>
           </div>
           <div className="apple-card py-3 px-2 flex flex-col items-center">
             <FlameIcon size={28} />
-            <div className="text-[17px] font-bold tabular-nums mt-1" style={{ color: 'var(--apple-red)' }}>~150</div>
+            <div className="text-[17px] font-bold tabular-nums mt-1" style={{ color: 'var(--apple-red)' }}>~{(workout.estimatedMinutes || 15) * 10}</div>
             <div className="apple-caption-2 mt-0.5" style={{ color: 'var(--apple-text-tertiary)' }}>CALORIES</div>
           </div>
           <div className="apple-card py-3 px-2 flex flex-col items-center">
