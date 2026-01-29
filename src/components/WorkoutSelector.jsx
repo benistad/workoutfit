@@ -136,12 +136,14 @@ export function WorkoutSelector({ onSelectWorkout, allProgress = {}, globalStats
                       >
                         {workout.name}
                       </h3>
-                      <p 
-                        className="apple-subheadline mt-1"
-                        style={{ color: 'var(--apple-text-secondary)' }}
-                      >
-                        {workout.description}
-                      </p>
+                      {workout.subtitle && (
+                        <p 
+                          className="apple-subheadline mt-0.5"
+                          style={{ color: 'var(--apple-text-secondary)' }}
+                        >
+                          {workout.subtitle}
+                        </p>
+                      )}
                       
                       {/* Progress bar inside image */}
                       {hasStarted && (
@@ -183,9 +185,9 @@ export function WorkoutSelector({ onSelectWorkout, allProgress = {}, globalStats
                   className="flex items-center justify-between px-4 py-3"
                   style={{ borderTop: '0.5px solid var(--apple-separator)' }}
                 >
-                  <div className="flex items-center gap-5">
+                  <div className="flex items-center gap-4 flex-wrap">
                     <div className="flex items-center gap-1.5">
-                      <span className="text-[15px]">📅</span>
+                      <CalendarIcon size={16} color="var(--apple-text-secondary)" />
                       <span 
                         className="apple-subheadline"
                         style={{ color: 'var(--apple-text-primary)' }}
@@ -193,30 +195,47 @@ export function WorkoutSelector({ onSelectWorkout, allProgress = {}, globalStats
                         {workout.duration} jours
                       </span>
                     </div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[15px]">⏱</span>
-                      <span 
-                        className="apple-subheadline"
-                        style={{ color: 'var(--apple-text-primary)' }}
-                      >
-                        ~20 min
-                      </span>
-                    </div>
-                    {hasStarted && (
+                    {workout.equipment === 'none' && (
                       <div className="flex items-center gap-1.5">
-                        <span className="text-[15px]">✅</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="12" r="9" stroke="var(--apple-text-secondary)" strokeWidth="2" fill="none"/>
+                          <path d="M8 12L11 15L16 9" stroke="var(--apple-text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
                         <span 
                           className="apple-subheadline"
+                          style={{ color: 'var(--apple-text-primary)' }}
+                        >
+                          Sans équipement
+                        </span>
+                      </div>
+                    )}
+                    {workout.difficulty && (
+                      <div className="flex items-center gap-1.5">
+                        <div className="flex gap-0.5">
+                          {[1, 2, 3, 4, 5].map((level) => (
+                            <div 
+                              key={level}
+                              className="w-2 h-2 rounded-sm"
+                              style={{ 
+                                backgroundColor: level <= workout.difficulty 
+                                  ? 'var(--apple-red)' 
+                                  : 'var(--apple-fill-tertiary)'
+                              }}
+                            />
+                          ))}
+                        </div>
+                        <span 
+                          className="apple-caption-1"
                           style={{ color: 'var(--apple-text-secondary)' }}
                         >
-                          {workoutProgress.length}/{workout.duration}
+                          {workout.difficultyLabel}
                         </span>
                       </div>
                     )}
                   </div>
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
-                    className="h-4 w-4" 
+                    className="h-4 w-4 flex-shrink-0" 
                     fill="none" 
                     viewBox="0 0 24 24" 
                     stroke="currentColor"

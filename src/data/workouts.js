@@ -2,9 +2,14 @@ export const workouts = [
   {
     id: 'back-and-core',
     name: 'Back & Core',
+    subtitle: 'Support & Recovery',
     description: 'Programme DAREBEE de 30 jours pour le dos et les abdominaux',
     duration: 30,
     daysPerWeek: 7,
+    equipment: 'none',
+    type: 'addon',
+    difficulty: 2,
+    difficultyLabel: 'Débutant',
     image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=600&fit=crop&q=80',
     days: [
       { day: 1, title: 'Day 1 - Support & Strength', image: '/exercises/day-02.png' },
