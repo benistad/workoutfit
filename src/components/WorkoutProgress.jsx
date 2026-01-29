@@ -51,45 +51,8 @@ export function WorkoutProgress({ workout, completedDays, onSelectDay, onReset, 
 
       {/* Main Content */}
       <main className="px-4 pb-32 max-w-lg mx-auto">
-        {/* Activity Rings Card */}
-        <div className="apple-card p-5 mb-3 animate-scale-in">
-          <div className="flex items-center gap-5">
-            <ActivityRings 
-              move={progressPercent} 
-              exercise={progressPercent} 
-              stand={Math.min(progressPercent * 1.2, 100)} 
-              size={120} 
-              strokeWidth={11} 
-            />
-            <div className="flex-1 min-w-0">
-              <p className="apple-caption mb-1">
-                {workout.name}
-              </p>
-              <p 
-                className="text-[40px] font-bold tabular-nums leading-none"
-                style={{ color: 'var(--apple-text-primary)' }}
-              >
-                {Math.round(progressPercent)}%
-              </p>
-              <p 
-                className="apple-footnote mt-2"
-                style={{ color: 'var(--apple-text-secondary)' }}
-              >
-                {completedCount} sur {totalDays} jours
-              </p>
-              
-              {/* Streak badge */}
-              {streak >= 3 && (
-                <div className="mt-2">
-                  <StreakBadge streak={streak} />
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
         {/* Program Details */}
-        <div className="grid grid-cols-3 gap-2 mb-3 animate-slide-up stagger-1">
+        <div className="grid grid-cols-3 gap-2 mb-3 animate-slide-up">
           {/* Duration */}
           <div className="apple-card py-3 px-2 flex flex-col items-center">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -157,6 +120,43 @@ export function WorkoutProgress({ workout, completedDays, onSelectDay, onReset, 
             </div>
             <div className="apple-caption-2 mt-0.5" style={{ color: 'var(--apple-text-tertiary)' }}>
               DIFFICULTÉ
+            </div>
+          </div>
+        </div>
+
+        {/* Activity Rings Card */}
+        <div className="apple-card p-5 mb-3 animate-scale-in stagger-1">
+          <div className="flex items-center gap-5">
+            <ActivityRings 
+              move={progressPercent} 
+              exercise={progressPercent} 
+              stand={Math.min(progressPercent * 1.2, 100)} 
+              size={120} 
+              strokeWidth={11} 
+            />
+            <div className="flex-1 min-w-0">
+              <p className="apple-caption mb-1">
+                {workout.name}
+              </p>
+              <p 
+                className="text-[40px] font-bold tabular-nums leading-none"
+                style={{ color: 'var(--apple-text-primary)' }}
+              >
+                {Math.round(progressPercent)}%
+              </p>
+              <p 
+                className="apple-footnote mt-2"
+                style={{ color: 'var(--apple-text-secondary)' }}
+              >
+                {completedCount} sur {totalDays} jours
+              </p>
+              
+              {/* Streak badge */}
+              {streak >= 3 && (
+                <div className="mt-2">
+                  <StreakBadge streak={streak} />
+                </div>
+              )}
             </div>
           </div>
         </div>
